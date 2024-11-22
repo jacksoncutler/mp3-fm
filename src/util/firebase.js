@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app';
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA0MO2vgg3wgJjUBOIZPZ5Dhh2_YUU6deU',
@@ -11,4 +12,18 @@ const firebaseConfig = {
 
 export function initFirebase() {
   initializeApp(firebaseConfig);
+}
+
+export async function getSongURL(path) {
+  if (!path) return;
+  const songRef = ref(getStorage(), path);
+  return await getDownloadURL(songRef);
+}
+
+export async function getSongData() {
+  return {
+    path: 'songs/casiopea-take_me.mp3',
+    name: 'Take Me',
+    artist: 'Casiopea',
+  };
 }

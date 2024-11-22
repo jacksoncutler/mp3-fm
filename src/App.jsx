@@ -1,14 +1,12 @@
 import { initFirebase } from './util/firebase';
-import AudioPlayer from './components/AudioPlayer';
+import AudioInterface from './components/AudioInterface';
 import './App.css';
 
 function App() {
   initFirebase();
   return (
     <>
-      <div className='container'>
-        <AudioPlayer />
-      </div>
+      <AudioInterface />
     </>
   );
 }
