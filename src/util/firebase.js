@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+import { getStorage, ref as refStore, getDownloadURL } from 'firebase/storage';
+import { getDatabase, ref as refDB, child, get } from 'firebase/database';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA0MO2vgg3wgJjUBOIZPZ5Dhh2_YUU6deU',
@@ -14,16 +15,17 @@ export function initFirebase() {
   initializeApp(firebaseConfig);
 }
 
-export async function getSongURL(path) {
-  if (!path) return;
-  const songRef = ref(getStorage(), path);
+export async function getSongURL(filename) {
+  if (!filename) return;
+  const path = 'songs/' + filename;
+  const songRef = refStore(getStorage(), path);
   return await getDownloadURL(songRef);
 }
 
 export async function getSongData() {
-  return {
-    path: 'songs/casiopea-take_me.mp3',
-    name: 'Take Me',
-    artist: 'Casiopea',
-  };
+  const dbRef = refDB(getDatabase());
+  const snapshot = await get(child(dbRef, 'songs/18'));
+  if (snapshot.exists()) {
+    return snapshot.val();
+  } else return {};
 }

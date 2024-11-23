@@ -6,14 +6,14 @@ function Player(props) {
   const [songURL, setSongURL] = useState('');
 
   useEffect(() => {
-    getSongURL(props.path)
+    getSongURL(props.filename)
       .then((url) => {
         setSongURL(url);
       })
       .catch((err) => {
         console.error(err);
       });
-  }, [props.path]);
+  }, [props.filename]);
 
   return (
     <>

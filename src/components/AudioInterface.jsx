@@ -22,7 +22,7 @@ function AudioInterface(props) {
 
   return (
     <div className='container'>
-      <Player path={currentSong.path} title={title} />
+      <Player filename={currentSong.filename} title={title} />
     </div>
   );
 }
