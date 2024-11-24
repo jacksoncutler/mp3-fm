@@ -22,9 +22,9 @@ export async function getSongURL(filename) {
   return await getDownloadURL(songRef);
 }
 
-export async function getSongData() {
+export async function getSongData(id) {
   const dbRef = refDB(getDatabase());
-  const snapshot = await get(child(dbRef, 'songs/18'));
+  const snapshot = await get(child(dbRef, `songs/${id}`));
   if (snapshot.exists()) {
     return snapshot.val();
   } else return {};

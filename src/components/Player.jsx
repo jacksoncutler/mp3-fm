@@ -1,24 +1,12 @@
-import { useState, useEffect } from 'react';
-import ReactAudioPlayer from 'react-audio-player';
-import { getSongURL } from '../util/firebase';
+import { useRef } from 'react';
 
-function Player(props) {  
-  const [songURL, setSongURL] = useState('');
-
-  useEffect(() => {
-    getSongURL(props.filename)
-      .then((url) => {
-        setSongURL(url);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, [props.filename]);
+function Player(props) {
+  const playerRef = useRef(null);
 
   return (
-    <>
-      <ReactAudioPlayer controls src={songURL} title={props.title} />
-    </>
+    <div className='player'>
+      <audio ref={playerRef} controls src={props.src} title={props.title} />
+    </div>
   );
 }
 

@@ -1,14 +1,22 @@
 import { useState, useEffect } from 'react';
-import { getSongData } from '../util/firebase';
+import { getSongData, getSongURL } from '../util/firebase';
 import Player from './Player';
 
-function AudioInterface(props) {
-  const [currentSong, setCurrentSong] = useState({});
+function AudioInterface() {
+  const [songData, setSongData] = useState({});
+  const [songURL, setSongURL] = useState('');
 
   useEffect(() => {
-    getSongData()
+    getSongData(1)
       .then((song) => {
-        setCurrentSong(song);
+        setSongData(song);
+        getSongURL(song.filename)
+          .then((url) => {
+            setSongURL(url);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
       })
       .catch((err) => {
         console.error(err);
@@ -16,13 +24,13 @@ function AudioInterface(props) {
   }, []);
 
   let title;
-  if (currentSong.artist && currentSong.name) {
-    title = `${currentSong.artist} - ${currentSong.name}`
-  };
+  if (songData.artist && songData.name) {
+    title = `${songData.artist} - ${songData.name}`;
+  }
 
   return (
     <div className='container'>
-      <Player filename={currentSong.filename} title={title} />
+      <Player src={songURL} title={title} />
     </div>
   );
 }
