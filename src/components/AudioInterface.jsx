@@ -1,38 +1,56 @@
 import { useState, useEffect } from 'react';
-import { getSongData, getSongURL } from '../util/firebase';
-import Player from './Player';
+import { getSongList, getSongURL } from '../util/firebase';
 import SongDisplay from './SongDisplay';
+import Player from './Player';
 
 function AudioInterface() {
-  const [songData, setSongData] = useState({});
+  const [songIdx, setSongIdx] = useState(null);
+  const [songList, setSongList] = useState([]);
   const [songURL, setSongURL] = useState('');
 
   useEffect(() => {
-    getSongData(1)
-      .then((song) => {
-        setSongData(song);
-        getSongURL(song.filename)
-          .then((url) => {
-            setSongURL(url);
-          })
-          .catch((err) => {
-            console.error(err);
-          });
+    getSongList()
+      .then((list) => {
+        setSongList(list);
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
 
+  useEffect(() => {
+    if (songIdx !== null)
+      getSongURL(songList[songIdx].filename)
+        .then((url) => {
+          setSongURL(url);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+  }, [songIdx]);
+
+  function prevSongHandler() {
+    setSongIdx(0);
+  }
+
+  function nextSongHandler() {
+    setSongIdx(17);
+  }
+
   let title;
-  if (songData.artist && songData.name) {
-    title = `${songData.artist} - ${songData.name}`;
+  if (songList.length > 0 && songIdx !== null) {
+    title = `${songList[songIdx].artist} - ${songList[songIdx].name}`;
   }
 
   return (
     <div className='container'>
       <SongDisplay title={title} />
-      <Player src={songURL} title={title} />
+      <Player
+        src={songURL}
+        title={title}
+        onNextSong={nextSongHandler}
+        onPrevSong={prevSongHandler}
+      />
     </div>
   );
 }
