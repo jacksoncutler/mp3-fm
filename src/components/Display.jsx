@@ -1,4 +1,4 @@
-function SongDisplay(props) {
+function Display(props) {
   return (
     <>
       <div className='display'>
@@ -8,4 +8,4 @@ function SongDisplay(props) {
   );
 }
 
-export default SongDisplay;
+export default Display;
