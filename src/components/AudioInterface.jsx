@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getSongList, getSongURL } from '../util/firebase';
+import { shuffleSongs } from '../util/helpers';
 import Display from './Display';
 import Player from './Player';
 
@@ -11,6 +12,7 @@ function AudioInterface() {
   useEffect(() => {
     getSongList()
       .then((list) => {
+        shuffleSongs(list);
         setSongList(list);
       })
       .catch((err) => {
