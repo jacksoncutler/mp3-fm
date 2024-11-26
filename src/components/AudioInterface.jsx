@@ -10,33 +10,33 @@ function AudioInterface() {
   const [songURL, setSongURL] = useState('');
 
   useEffect(() => {
-    getSongList()
-      .then((list) => {
-        shuffleSongs(list);
-        setSongList(list);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, []);
-
-  useEffect(() => {
     if (songIdx !== null)
-      getSongURL(songList[songIdx].filename)
-        .then((url) => {
-          setSongURL(url);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+      getSongURL(songList[songIdx].filename).then((url) => {
+        setSongURL(url);
+      });
   }, [songIdx]);
 
-  function prevSongHandler() {
+  async function initListHandler() {
+    const list = await getSongList();
+    shuffleSongs(list);
+    setSongList(list);
     setSongIdx(0);
   }
 
+  function prevSongHandler() {
+    setSongIdx((prevState) => prevState - 1);
+  }
+
   function nextSongHandler() {
-    setSongIdx(17);
+    setSongIdx((prevState) => prevState + 1);
+  }
+
+  function firstSongHandler() {
+    return songIdx === 0;
+  }
+
+  function lastSongHandler() {
+    return songIdx === songList.length - 1;
   }
 
   let title;
@@ -50,8 +50,11 @@ function AudioInterface() {
       <Player
         src={songURL}
         title={title}
-        onNextSong={nextSongHandler}
+        onFirstPlay={initListHandler}
         onPrevSong={prevSongHandler}
+        onNextSong={nextSongHandler}
+        isFirstSong={firstSongHandler}
+        isLastSong={lastSongHandler}
       />
     </div>
   );

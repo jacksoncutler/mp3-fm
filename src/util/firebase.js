@@ -16,16 +16,24 @@ export function initFirebase() {
 }
 
 export async function getSongList() {
-  const dbRef = refDB(getDatabase());
-  const snapshot = await get(child(dbRef, 'songs/'));
-  if (snapshot.exists()) {
-    return snapshot.val();
-  } else return {};
+  try {
+    const dbRef = refDB(getDatabase());
+    const snapshot = await get(child(dbRef, 'songs/'));
+    if (snapshot.exists()) {
+      return snapshot.val();
+    } else return {};
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 export async function getSongURL(filename) {
   if (!filename) return;
-  const path = 'songs/' + filename;
-  const songRef = refStore(getStorage(), path);
-  return await getDownloadURL(songRef);
+  try {
+    const path = 'songs/' + filename;
+    const songRef = refStore(getStorage(), path);
+    return await getDownloadURL(songRef);
+  } catch (err) {
+    console.error(err);
+  }
 }
