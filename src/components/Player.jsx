@@ -14,11 +14,27 @@ function Player(props) {
     }
   }, [isPlaying]);
 
+  useEffect(() => {
+    if (!playerRef) return;
+    playerRef.current.addEventListener('ended', songEndHandler);
+    return () => {
+      playerRef.current.removeEventListener('ended', songEndHandler);
+    };
+  }, [props.src]);
+
   function playPauseHandler() {
     if (!props.src) {
       props.onFirstPlay();
     } else {
       setIsPlaying((prevState) => !prevState);
+    }
+  }
+
+  function songEndHandler() {
+    if (!props.isLastSong()) {
+      props.onNextSong();
+    } else {
+      setIsPlaying(false);
     }
   }
 
@@ -52,7 +68,12 @@ function Player(props) {
       <button onClick={nextSongHandler} disabled={isDisabledNext()}>
         Next
       </button>
-      <audio src={props.src} title={props.title} ref={playerRef} autoPlay />
+      <audio
+        ref={playerRef}
+        src={props.src}
+        title={props.title}
+        autoPlay={isPlaying}
+      />
     </div>
   );
 }

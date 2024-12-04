@@ -12,6 +12,9 @@ main {
 
 .container {
   margin: auto;
+}
+
+.player {
   display: flex;
   flex-direction: column;
 }
@@ -19,9 +22,4 @@ main {
 .display {
   display: flex;
   background-color: lightgray;
-}
-
-.player {
-  display: flex;
-  flex-direction: column;
 }
