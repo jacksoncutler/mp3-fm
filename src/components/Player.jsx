@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import Display from './Display';
 
 function Player(props) {
   const [isPlaying, setIsPlaying] = useState(true);
@@ -43,6 +44,7 @@ function Player(props) {
 
   return (
     <div className='player'>
+      <Display title={props.title} />
       <button onClick={prevSongHandler} disabled={isDisabledPrev()}>
         Prev
       </button>

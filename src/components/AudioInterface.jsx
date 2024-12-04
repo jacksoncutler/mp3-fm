@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getSongList, getSongURL } from '../util/firebase';
 import { shuffleSongs } from '../util/helpers';
-import Display from './Display';
 import Player from './Player';
 
 function AudioInterface() {
@@ -46,7 +45,6 @@ function AudioInterface() {
 
   return (
     <div className='container'>
-      <Display title={title} />
       <Player
         src={songURL}
         title={title}
