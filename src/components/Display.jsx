@@ -5,8 +5,8 @@ function Display(props) {
 
   return (
     <div className='display'>
-      <p>{songName}</p>
-      <p>{artist}</p>
+      <p className='display-field'>{songName}</p>
+      <p className='display-field'>{artist}</p>
     </div>
   );
 }

@@ -61,13 +61,15 @@ function Player(props) {
   return (
     <div className='player'>
       <Display data={props.data} />
-      <button onClick={prevSongHandler} disabled={isDisabledPrev()}>
-        Prev
-      </button>
-      <button onClick={playPauseHandler}>Play/Pause</button>
-      <button onClick={nextSongHandler} disabled={isDisabledNext()}>
-        Next
-      </button>
+      <div className='control-wheel'>
+        <button onClick={prevSongHandler} disabled={isDisabledPrev()}>
+          Prev
+        </button>
+        <button onClick={playPauseHandler}>Play/Pause</button>
+        <button onClick={nextSongHandler} disabled={isDisabledNext()}>
+          Next
+        </button>
+      </div>
       <audio
         ref={playerRef}
         src={props.src}

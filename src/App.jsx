@@ -4,8 +4,9 @@ import './App.css';
 
 function App() {
   initFirebase();
+  let theme = 'light';
   return (
-    <main>
+    <main data-theme={theme}>
       <AudioInterface />
     </main>
   );
