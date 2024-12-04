@@ -5,9 +5,9 @@ import './App.css';
 function App() {
   initFirebase();
   return (
-    <>
+    <main>
       <AudioInterface />
-    </>
+    </main>
   );
 }
 

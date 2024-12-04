@@ -1,7 +1,13 @@
-#root {
-  min-height: 100vh;
+main {
+  height: 100vh;
   width: 100%;
   display: flex;
+  background-image: url('assets/palms-dith.jpg');
+  background-position: center 54%;
+  background-size: cover;
+  /* background-image: url('assets/city-dith.jpg');
+  background-position: center 65%;
+  background-size: cover; */
 }
 
 .container {
