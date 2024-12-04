@@ -38,16 +38,13 @@ function AudioInterface() {
     return songIdx === songList.length - 1;
   }
 
-  let title;
-  if (songList.length > 0 && songIdx !== null) {
-    title = `${songList[songIdx].artist} - ${songList[songIdx].name}`;
-  }
+  const songData = (songList.length > 0 && songIdx !== null) ? songList[songIdx] : undefined;
 
   return (
     <div className='container'>
       <Player
         src={songURL}
-        title={title}
+        data={songData}
         onFirstPlay={initListHandler}
         onPrevSong={prevSongHandler}
         onNextSong={nextSongHandler}

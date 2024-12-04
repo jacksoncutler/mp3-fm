@@ -60,7 +60,7 @@ function Player(props) {
 
   return (
     <div className='player'>
-      <Display title={props.title} />
+      <Display data={props.data} />
       <button onClick={prevSongHandler} disabled={isDisabledPrev()}>
         Prev
       </button>
@@ -71,7 +71,7 @@ function Player(props) {
       <audio
         ref={playerRef}
         src={props.src}
-        title={props.title}
+        title={props.src}
         autoPlay={isPlaying}
       />
     </div>
