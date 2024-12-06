@@ -2,33 +2,38 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   
   --bg-image-src-light: url('assets/palms-dith.jpg');
-  --bg-image-pos-light: center 54%;
   --bg-image-src-dark: url('assets/city-dith.jpg');
+  --bg-image-pos-light: center 54%;
   --bg-image-pos-dark: center 65%;
   
   --color-white-100: #fdfdfd;
-  --color-white-200: #eaeaea;
-  --color-grey-100: #d9d9d9;
-  --color-grey-200: #bfbfbf;
-  --color-dark-grey-100: #838383;
-  --color-dark-grey-200: #3c3c3c;
+  --color-white-200: #f2f2f2;
+  --color-white-300: #dfdfdf;
+  --color-grey-100: #cbcbcb;
+  --color-grey-200: #afafaf;
+  --color-grey-300: #4d4d4d;
 
+  --player-inset-shadow-light: inset 0.5px -0.5px 13px -5px black;
+  --player-inset-shadow-dark: inset 0.5px -0.5px 16px -2px black;
+
+  /* DEFAULT THEME */
   --bg-image-src: var(--bg-image-src-light);
   --bg-image-pos: var(--bg-image-pos-light);
-
   --color-player-start: var(--color-white-200);
   --color-player-end: var(--color-white-100);
-  --color-screen-start: var(--color-grey-200);
-  --color-screen-end: var(--color-grey-100);
+  --color-screen-start: var(--color-grey-100);
+  --color-screen-end: var(--color-white-200);
+  --player-inset-shadow: var(--player-inset-shadow-light);
 }
 
 [data-theme="dark"] {
   --bg-image-src: var(--bg-image-src-dark);
   --bg-image-pos: var(--bg-image-pos-dark);
-  --color-player-start: var(--color-dark-grey-200);
-  --color-player-end: var(--color-dark-grey-100);
-  --color-screen-start: var(--color-white-200);
+  --color-player-start: var(--color-grey-300);
+  --color-player-end: var(--color-grey-200);
+  --color-screen-start: var(--color-grey-100);
   --color-screen-end: var(--color-white-100);
+  --player-inset-shadow: var(--player-inset-shadow-dark);
 }
 
 *,
