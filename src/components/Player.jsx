@@ -62,11 +62,11 @@ function Player(props) {
     <div className='player'>
       <Display data={props.data} />
       <div className='control-wheel'>
-        <button onClick={prevSongHandler} disabled={isDisabledPrev()}>
+        <button className='control-button prev' onClick={prevSongHandler} disabled={isDisabledPrev()}>
           Prev
         </button>
-        <button onClick={playPauseHandler}>Play/Pause</button>
-        <button onClick={nextSongHandler} disabled={isDisabledNext()}>
+        <button className='control-button play' onClick={playPauseHandler}>Play</button>
+        <button className='control-button next' onClick={nextSongHandler} disabled={isDisabledNext()}>
           Next
         </button>
       </div>

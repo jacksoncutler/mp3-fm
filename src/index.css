@@ -7,14 +7,14 @@
   --bg-image-pos-dark: center 65%;
   
   --color-white-100: #fdfdfd;
-  --color-white-200: #f2f2f2;
+  --color-white-200: #eaeaea;
   --color-white-300: #dfdfdf;
   --color-grey-100: #cbcbcb;
   --color-grey-200: #afafaf;
   --color-grey-300: #4d4d4d;
 
-  --player-inset-shadow-light: inset 0.5px -0.5px 13px -5px black;
-  --player-inset-shadow-dark: inset 0.5px -0.5px 16px -2px black;
+  --player-inset-shadow-light: inset 0.5px -0.5px 14px -6px var(--color-grey-300);
+  --player-inset-shadow-dark: inset 0.5px -0.5px 14px -3px black;
 
   /* DEFAULT THEME */
   --bg-image-src: var(--bg-image-src-light);

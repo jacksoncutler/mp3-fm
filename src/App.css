@@ -52,6 +52,35 @@ main {
 .control-wheel {
   position: relative;
   width: 100%;
+  aspect-ratio: 1/1;
+}
+
+.control-button {
+  position: absolute;
+}
+
+.control-button.prev {
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin-block: auto;
+  height: fit-content;
+}
+
+.control-button.play {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-inline: auto;
+  width: fit-content;
+}
+
+.control-button.next {
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin-block: auto;
+  height: fit-content;
 }
 
 .testbtn {
