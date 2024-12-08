@@ -24,6 +24,7 @@
   --color-screen-start: var(--color-grey-100);
   --color-screen-end: var(--color-white-200);
   --player-inset-shadow: var(--player-inset-shadow-light);
+  --color-border: var(--color-grey-200);
 }
 
 [data-theme="dark"] {
@@ -34,6 +35,7 @@
   --color-screen-start: var(--color-grey-100);
   --color-screen-end: var(--color-white-100);
   --player-inset-shadow: var(--player-inset-shadow-dark);
+  --color-border: var(--color-grey-300);
 }
 
 *,

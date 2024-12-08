@@ -18,6 +18,9 @@ function Controls(props) {
       >
         Next
       </button>
+      <div className='outer-wheel'>
+        <div className='inner-wheel' />
+      </div>
     </div>
   );
 }
