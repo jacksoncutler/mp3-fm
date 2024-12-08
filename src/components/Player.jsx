@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import Display from './Display';
+import Controls from './Controls';
 
 function Player(props) {
   const [isPlaying, setIsPlaying] = useState(true);
@@ -61,15 +62,13 @@ function Player(props) {
   return (
     <div className='player'>
       <Display data={props.data} />
-      <div className='control-wheel'>
-        <button className='control-button prev' onClick={prevSongHandler} disabled={isDisabledPrev()}>
-          Prev
-        </button>
-        <button className='control-button play' onClick={playPauseHandler}>Play</button>
-        <button className='control-button next' onClick={nextSongHandler} disabled={isDisabledNext()}>
-          Next
-        </button>
-      </div>
+      <Controls
+        onPrevSong={prevSongHandler}
+        onPlayPause={playPauseHandler}
+        onNextSong={nextSongHandler}
+        isDisabledPrev={isDisabledPrev}
+        isDisabledNext={isDisabledNext}
+      />
       <audio
         ref={playerRef}
         src={props.src}
