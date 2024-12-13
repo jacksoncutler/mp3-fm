@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import DisplayWrapper from './DisplayWrapper';
+import DisplaySong from './DisplaySong';
 import Controls from './Controls';
 
 function Player(props) {
@@ -61,7 +62,7 @@ function Player(props) {
 
   return (
     <div className='player'>
-      <DisplayWrapper data={props.data} />
+      <DisplayWrapper children={<DisplaySong data={props.data} />} />
       <Controls
         onPrevSong={prevSongHandler}
         onPlayPause={playPauseHandler}
