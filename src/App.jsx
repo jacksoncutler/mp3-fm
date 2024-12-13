@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { initFirebase } from './util/firebase';
-import AudioInterface from './components/AudioInterface';
+import PlayerWrapper from './components/PlayerWrapper';
 import './App.css';
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
   initFirebase();
   return (
     <main data-theme={theme}>
-      <AudioInterface />
+      <PlayerWrapper />
       <button className='testbtn' onClick={toggleTheme}>Theme</button>
     </main>
   );

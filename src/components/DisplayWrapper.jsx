@@ -1,4 +1,4 @@
-function Display(props) {
+function DisplayWrapper(props) {
   const [songName, artist] = props.data
     ? [props.data.name, props.data.artist]
     : [undefined, undefined];
@@ -11,4 +11,4 @@ function Display(props) {
   );
 }
 
-export default Display;
+export default DisplayWrapper;

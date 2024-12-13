@@ -3,7 +3,7 @@ import { getSongList, getSongURL } from '../util/firebase';
 import { shuffleSongs } from '../util/helpers';
 import Player from './Player';
 
-function AudioInterface() {
+function PlayerWrapper() {
   const [songIdx, setSongIdx] = useState(null);
   const [songList, setSongList] = useState([]);
   const [songURL, setSongURL] = useState('');
@@ -55,4 +55,4 @@ function AudioInterface() {
   );
 }
 
-export default AudioInterface;
+export default PlayerWrapper;
