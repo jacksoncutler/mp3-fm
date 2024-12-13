@@ -24,14 +24,6 @@ function Player(props) {
     };
   }, [props.src]);
 
-  function playPauseHandler() {
-    if (!props.src) {
-      props.onFirstPlay();
-    } else {
-      setIsPlaying((prevState) => !prevState);
-    }
-  }
-
   function songEndHandler() {
     if (!props.isLastSong()) {
       props.onNextSong();
@@ -48,16 +40,12 @@ function Player(props) {
     }
   }
 
-  function nextSongHandler() {
-    props.onNextSong();
-  }
-
-  function isDisabledPrev() {
-    return !props.src || props.isFirstSong();
-  }
-
-  function isDisabledNext() {
-    return !props.src || props.isLastSong();
+  function playPauseHandler() {
+    if (!props.src) {
+      props.onFirstPlay();
+    } else {
+      setIsPlaying((prevState) => !prevState);
+    }
   }
 
   return (
@@ -66,9 +54,9 @@ function Player(props) {
       <Controls
         onPrevSong={prevSongHandler}
         onPlayPause={playPauseHandler}
-        onNextSong={nextSongHandler}
-        isDisabledPrev={isDisabledPrev}
-        isDisabledNext={isDisabledNext}
+        onNextSong={props.onNextSong}
+        isDisabledPrev={props.isFirstSong}
+        isDisabledNext={props.isLastSong}
       />
       <audio
         ref={playerRef}

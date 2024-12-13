@@ -31,11 +31,11 @@ function PlayerWrapper() {
   }
 
   function firstSongHandler() {
-    return songIdx === 0;
+    return !songURL || songIdx === 0;
   }
 
   function lastSongHandler() {
-    return songIdx === songList.length - 1;
+    return !songURL || songIdx === songList.length - 1;
   }
 
   const songData = (songList.length > 0 && songIdx !== null) ? songList[songIdx] : undefined;
