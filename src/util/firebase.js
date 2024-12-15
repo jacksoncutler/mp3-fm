@@ -15,10 +15,10 @@ export function initFirebase() {
   initializeApp(firebaseConfig);
 }
 
-export async function getSongList() {
+export async function getPlaylists() {
   try {
     const dbRef = refDB(getDatabase());
-    const snapshot = await get(child(dbRef, 'songs/'));
+    const snapshot = await get(child(dbRef, 'playlistNames'));
     if (snapshot.exists()) {
       return snapshot.val();
     } else return {};
@@ -27,10 +27,22 @@ export async function getSongList() {
   }
 }
 
-export async function getSongURL(filename) {
+export async function getSongList(playlist) {
+  try {
+    const dbRef = refDB(getDatabase());
+    const snapshot = await get(child(dbRef, `playlists/${playlist}`));
+    if (snapshot.exists()) {
+      return snapshot.val();
+    } else return {};
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function getSongURL(playlist, filename) {
   if (!filename) return;
   try {
-    const path = 'songs/' + filename;
+    const path = `playlists/${playlist}/${filename}`;
     const songRef = refStore(getStorage(), path);
     return await getDownloadURL(songRef);
   } catch (err) {
