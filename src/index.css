@@ -27,7 +27,7 @@
   --color-border: var(--color-grey-200);
 }
 
-[data-theme="dark"] {
+[data-theme="fm-night"] {
   --bg-image-src: var(--bg-image-src-dark);
   --bg-image-pos: var(--bg-image-pos-dark);
   --color-player-start: var(--color-grey-300);

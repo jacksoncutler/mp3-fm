@@ -1,31 +1,39 @@
-import { useState, useEffect } from 'react';
-import { getPlaylists, getSongList, getSongURL } from '../util/firebase';
+import { useState, useEffect, useContext } from 'react';
+import { getSongList, getSongURL } from '../util/firebase';
+import PlaylistContext from '../contexts/PlaylistContext';
 import { shuffleSongs } from '../util/helpers';
 import Player from './Player';
 
-function PlayerWrapper() {
-  const [playlist, setPlaylist] = useState(null);
+function PlayerWrapper(props) {
+  const { playlist } = useContext(PlaylistContext);
   const [songIdx, setSongIdx] = useState(null);
   const [songList, setSongList] = useState([]);
   const [songURL, setSongURL] = useState('');
 
   useEffect(() => {
-    getPlaylists().then((playlists) => {
-      setPlaylist(playlists[0]);
-    });
-  }, []);
+    if (playlist) {
+      initList();
+      setSongIdx(null);
+      setSongURL('');
+    }
+  }, [playlist]);
 
   useEffect(() => {
-    if (songIdx !== null)
+    if (songIdx !== null) {
       getSongURL(playlist, songList[songIdx].filename).then((url) => {
         setSongURL(url);
       });
+    }
   }, [songIdx]);
 
-  async function initListHandler() {
+  async function initList() {
     const list = await getSongList(playlist);
     shuffleSongs(list);
     setSongList(list);
+  }
+
+  async function initPlayer() {
+    await initList();
     setSongIdx(0);
   }
 
@@ -53,7 +61,7 @@ function PlayerWrapper() {
       <Player
         src={songURL}
         data={songData}
-        onFirstPlay={initListHandler}
+        onFirstPlay={initPlayer}
         onPrevSong={prevSongHandler}
         onNextSong={nextSongHandler}
         isFirstSong={firstSongHandler}

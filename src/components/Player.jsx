@@ -1,11 +1,17 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useContext } from 'react';
+import PlaylistContext from '../contexts/PlaylistContext';
 import DisplayWrapper from './DisplayWrapper';
 import DisplaySong from './DisplaySong';
 import Controls from './Controls';
 
 function Player(props) {
+  const { playlist } = useContext(PlaylistContext);
   const [isPlaying, setIsPlaying] = useState(true);
   const playerRef = useRef(null);
+
+  useEffect(() => {
+    if (playlist) setIsPlaying(true);
+  }, [playlist]);
 
   useEffect(() => {
     if (!props.src) return;
