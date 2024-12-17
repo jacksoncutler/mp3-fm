@@ -11,10 +11,11 @@
   --color-white-300: #dfdfdf;
   --color-grey-100: #cbcbcb;
   --color-grey-200: #afafaf;
-  --color-grey-300: #4d4d4d;
+  --color-grey-300: #757575;
+  --color-grey-400: #4d4d4d;
 
-  --player-inset-shadow-light: inset 0.5px -0.5px 14px -6px var(--color-grey-300);
-  --player-inset-shadow-dark: inset 0.5px -0.5px 14px -3px black;
+  --player-inset-shadow-light: inset 0.5px -0.5px 15px -5px var(--color-grey-300);
+  --player-inset-shadow-dark: inset 0.5px -0.5px 15px -3px black;
 
   /* DEFAULT THEME */
   --bg-image-src: var(--bg-image-src-light);
@@ -22,20 +23,22 @@
   --color-player-start: var(--color-white-200);
   --color-player-end: var(--color-white-100);
   --color-screen-start: var(--color-grey-100);
-  --color-screen-end: var(--color-white-200);
-  --player-inset-shadow: var(--player-inset-shadow-light);
+  --color-screen-end: var(--color-white-300);
+  --color-icon: var(--color-white-100);
   --color-border: var(--color-grey-200);
+  --player-inset-shadow: var(--player-inset-shadow-light);
 }
 
 [data-theme="fm-night"] {
   --bg-image-src: var(--bg-image-src-dark);
   --bg-image-pos: var(--bg-image-pos-dark);
-  --color-player-start: var(--color-grey-300);
+  --color-player-start: var(--color-grey-400);
   --color-player-end: var(--color-grey-200);
   --color-screen-start: var(--color-grey-100);
   --color-screen-end: var(--color-white-100);
+  --color-icon: var(--color-grey-300);
+  --color-border: var(--color-grey-400);
   --player-inset-shadow: var(--player-inset-shadow-dark);
-  --color-border: var(--color-grey-300);
 }
 
 *,
@@ -64,4 +67,10 @@ ul {
 img {
   display: block;
   max-width: 100%;
+}
+
+button {
+  border: none;
+  background-color: inherit;
+  padding: 0;
 }
