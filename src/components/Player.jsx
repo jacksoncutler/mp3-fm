@@ -39,7 +39,7 @@ function Player(props) {
   }
 
   function prevSongHandler() {
-    if (playerRef.current.currentTime < 0.6) {
+    if (playerRef.current.currentTime < 0.6 && !props.isFirstSong()) {
       props.onPrevSong();
     } else {
       playerRef.current.currentTime = 0;
@@ -61,7 +61,6 @@ function Player(props) {
         onPrevSong={prevSongHandler}
         onPlayPause={playPauseHandler}
         onNextSong={props.onNextSong}
-        isDisabledPrev={props.isFirstSong}
         isDisabledNext={props.isLastSong}
       />
       <audio

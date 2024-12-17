@@ -4,7 +4,6 @@ function Controls(props) {
       <button
         className='control-button prev'
         onClick={props.onPrevSong}
-        disabled={props.isDisabledPrev()}
       >
         <svg className='icon seek-back'>
           <use href='#song-seek'></use>
