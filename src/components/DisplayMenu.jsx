@@ -21,7 +21,7 @@ function DisplayMenu(props) {
     <ul>
       {playlistNames.map((playlistName, i) => {
         return (
-          <li key={i}>
+          <li className='playlist' key={i}>
             <button onClick={selectPlaylistHandler}>{playlistName}</button>
           </li>
         );

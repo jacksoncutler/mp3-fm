@@ -4,10 +4,10 @@ function DisplaySong(props) {
     : [undefined, undefined];
 
   return (
-    <>
-      <p className='display-field'>{songName}</p>
-      <p className='display-field'>{artist}</p>
-    </>
+    <div className='song'>
+      <p className='song-field'>{songName}</p>
+      <p className='song-field'>{artist}</p>
+    </div>
   );
 }
 
