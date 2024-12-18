@@ -6,13 +6,13 @@ import Controls from './Controls';
 
 function Player(props) {
   const { playlist } = useContext(PlaylistContext);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isMenuView, setIsMenuView] = useState(false);
   const playerRef = useRef(null);
 
   useEffect(() => {
-    if (playlist) setIsPlaying(true);
-  }, [playlist]);
+    setIsPlaying(playlist && props.src);
+  }, [playlist, props.src]);
 
   useEffect(() => {
     if (!props.src) return;
