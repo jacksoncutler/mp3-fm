@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect, useContext } from 'react';
 import PlaylistContext from '../contexts/PlaylistContext';
-import DisplaySong from './DisplaySong';
-import DisplayMenu from './DisplayMenu';
+import Screen from './Screen';
 import Controls from './Controls';
 
 function Player(props) {
@@ -61,30 +60,14 @@ function Player(props) {
 
   return (
     <div className='player'>
-      <div className='screen'>
-        <div className='screen-header'>
-          {isMenuView ? (
-            <></>
-          ) : (
-            <p className='screen-header-playpause'>{isPlaying ? 'pl' : 'ps'}</p>
-          )}
-          <p className='screen-header-text'>
-            {isMenuView ? 'mp3' : 'Now Playing'}
-          </p>
-          <p className='screen-header-battery'>Bat</p>
-        </div>
-        <div className='screen-display'>
-          {isMenuView ? (
-            <DisplayMenu onSelectPlaylist={menuToggleHandler} />
-          ) : (
-            <DisplaySong
-              data={props.data}
-              currentIdx={props.currentIdx}
-              lastIdx={props.lastIdx}
-            />
-          )}
-        </div>
-      </div>
+      <Screen 
+        data={props.data}
+        currentIdx={props.currentIdx}
+        lastIdx={props.lastIdx}
+        isPlaying={isPlaying}
+        isMenuView={isMenuView}
+        onMenuToggle={menuToggleHandler}
+      />
       <Controls
         onMenuToggle={menuToggleHandler}
         onPrevSong={prevSongHandler}
