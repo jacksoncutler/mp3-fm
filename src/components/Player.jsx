@@ -63,15 +63,25 @@ function Player(props) {
     <div className='player'>
       <div className='screen'>
         <div className='screen-header'>
-          {isMenuView ? <></> : <p className='screen-header-playpause'>{isPlaying ? 'pl' : 'ps'}</p>}
-          <p className='screen-header-text'>{isMenuView ? 'mp3' : 'Now Playing'}</p>
+          {isMenuView ? (
+            <></>
+          ) : (
+            <p className='screen-header-playpause'>{isPlaying ? 'pl' : 'ps'}</p>
+          )}
+          <p className='screen-header-text'>
+            {isMenuView ? 'mp3' : 'Now Playing'}
+          </p>
           <p className='screen-header-battery'>Bat</p>
         </div>
         <div className='screen-display'>
           {isMenuView ? (
             <DisplayMenu onSelectPlaylist={menuToggleHandler} />
           ) : (
-            <DisplaySong data={props.data} />
+            <DisplaySong
+              data={props.data}
+              currentIdx={props.currentIdx}
+              lastIdx={props.lastIdx}
+            />
           )}
         </div>
       </div>

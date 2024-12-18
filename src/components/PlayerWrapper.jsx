@@ -61,6 +61,8 @@ function PlayerWrapper(props) {
       <Player
         src={songURL}
         data={songData}
+        currentIdx={songIdx + 1}
+        lastIdx={songList.length}
         onFirstPlay={initPlayer}
         onPrevSong={prevSongHandler}
         onNextSong={nextSongHandler}
