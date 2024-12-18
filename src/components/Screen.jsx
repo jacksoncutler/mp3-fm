@@ -1,22 +1,14 @@
+import ScreenHeader from './ScreenHeader';
 import DisplayMenu from './DisplayMenu';
 import DisplaySong from './DisplaySong';
 
 function Screen(props) {
   return (
     <div className='screen'>
-      <div className='screen-header'>
-        {props.isMenuView ? (
-          <></>
-        ) : (
-          <p className='screen-header-playpause'>
-            {props.isPlaying ? 'pl' : 'ps'}
-          </p>
-        )}
-        <p className='screen-header-text'>
-          {props.isMenuView ? 'mp3' : 'Now Playing'}
-        </p>
-        <p className='screen-header-battery'>Bat</p>
-      </div>
+      <ScreenHeader 
+        isPlaying={props.isPlaying}
+        isMenuView={props.isMenuView}
+      />
       <div className='screen-display'>
         {props.isMenuView ? (
           <DisplayMenu onSelectPlaylist={props.onMenuToggle} />
