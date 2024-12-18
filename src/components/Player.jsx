@@ -63,7 +63,7 @@ function Player(props) {
     <div className='player'>
       <div className='display'>
         {
-          isMenuView ? <DisplayMenu /> : <DisplaySong data={props.data} />
+          isMenuView ? <DisplayMenu onSelectPlaylist={menuToggleHandler} /> : <DisplaySong data={props.data} />
         }
       </div>
       <Controls

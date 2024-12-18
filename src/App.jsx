@@ -13,19 +13,11 @@ function App() {
     });
   }, []);
 
-  function togglePlaylist() {
-    const newPlaylist = playlist === 'fm-day' ? 'fm-night' : 'fm-day';
-    setPlaylist(newPlaylist);
-  }
-
   initFirebase();
   return (
     <PlaylistContext.Provider value={{ playlist, setPlaylist }}>
       <main data-theme={playlist}>
         <PlayerWrapper />
-        <button className='testbtn' onClick={togglePlaylist}>
-          Playlist
-        </button>
       </main>
     </PlaylistContext.Provider>
   );
