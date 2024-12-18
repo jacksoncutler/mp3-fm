@@ -12,7 +12,6 @@ main {
   margin: auto;
   border-radius: 16px;
   box-shadow: 0 0 4px black;
-
 }
 
 .player {
@@ -96,6 +95,9 @@ main {
 .control-button.menu {
   top: 0;
   justify-content: start;
+  color: var(--color-icon);
+  font-size: 13px;
+  font-weight: bold;
 }
 
 .control-button.play {

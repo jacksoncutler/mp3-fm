@@ -1,19 +1,10 @@
 function Controls(props) {
   return (
     <div className='control-wheel'>
-      <button
-        className='control-button prev'
-        onClick={props.onPrevSong}
-      >
-        <svg className='icon seek-back'>
-          <use href='#song-seek'></use>
-        </svg>
-      </button>
-      <button className='control-button play' onClick={props.onPlayPause}>
-        <svg className='icon'>
-          <use href='#play-pause'></use>
-        </svg>
-      </button>
+      <div className='outer-wheel'>
+        <div className='inner-wheel' />
+      </div>
+      <button className='control-button menu'>MENU</button>
       <button
         className='control-button next'
         onClick={props.onNextSong}
@@ -23,9 +14,16 @@ function Controls(props) {
           <use href='#song-seek'></use>
         </svg>
       </button>
-      <div className='outer-wheel'>
-        <div className='inner-wheel' />
-      </div>
+      <button className='control-button play' onClick={props.onPlayPause}>
+        <svg className='icon'>
+          <use href='#play-pause'></use>
+        </svg>
+      </button>
+      <button className='control-button prev' onClick={props.onPrevSong}>
+        <svg className='icon seek-back'>
+          <use href='#song-seek'></use>
+        </svg>
+      </button>
       <svg
         version='1.1'
         xmlns='http://www.w3.org/2000/svg'
