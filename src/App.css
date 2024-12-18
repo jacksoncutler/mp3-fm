@@ -81,10 +81,12 @@ main {
 .song {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 100%;
 }
 
 .song-field {
+  height: 2em;
+  text-align: center;
   overflow-x: scroll;
   white-space: nowrap;
 }
