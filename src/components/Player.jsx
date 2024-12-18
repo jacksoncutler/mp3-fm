@@ -1,12 +1,13 @@
 import { useState, useRef, useEffect, useContext } from 'react';
 import PlaylistContext from '../contexts/PlaylistContext';
-import DisplayWrapper from './DisplayWrapper';
 import DisplaySong from './DisplaySong';
+import DisplayMenu from './DisplayMenu';
 import Controls from './Controls';
 
 function Player(props) {
   const { playlist } = useContext(PlaylistContext);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [isMenuView, setIsMenuView] = useState(false);
   const playerRef = useRef(null);
 
   useEffect(() => {
@@ -29,6 +30,10 @@ function Player(props) {
       playerRef.current.removeEventListener('ended', songEndHandler);
     };
   }, [props.src]);
+
+  function menuToggleHandler() {
+    setIsMenuView((prevState) => !prevState);
+  }
 
   function songEndHandler() {
     if (!props.isLastSong()) {
@@ -56,8 +61,13 @@ function Player(props) {
 
   return (
     <div className='player'>
-      <DisplayWrapper children={<DisplaySong data={props.data} />} />
+      <div className='display'>
+        {
+          isMenuView ? <DisplayMenu /> : <DisplaySong data={props.data} />
+        }
+      </div>
       <Controls
+        onMenuToggle={menuToggleHandler}
         onPrevSong={prevSongHandler}
         onPlayPause={playPauseHandler}
         onNextSong={props.onNextSong}

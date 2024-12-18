@@ -4,7 +4,9 @@ function Controls(props) {
       <div className='outer-wheel'>
         <div className='inner-wheel' />
       </div>
-      <button className='control-button menu'>MENU</button>
+      <button className='control-button menu' onClick={props.onMenuToggle}>
+        MENU
+      </button>
       <button
         className='control-button next'
         onClick={props.onNextSong}
