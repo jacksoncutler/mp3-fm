@@ -4,30 +4,30 @@ import PlaylistContext from '../contexts/PlaylistContext';
 import { shuffleSongs } from '../util/helpers';
 import Player from './Player';
 
-function PlayerWrapper(props) {
-  const { playlist } = useContext(PlaylistContext);
+function PlayerWrapper() {
+  const { currentPlaylist } = useContext(PlaylistContext);
   const [songIdx, setSongIdx] = useState(null);
   const [songList, setSongList] = useState([]);
   const [songURL, setSongURL] = useState('');
 
   useEffect(() => {
-    if (playlist) {
+    if (currentPlaylist) {
       initList();
       setSongIdx(null);
       setSongURL('');
     }
-  }, [playlist]);
+  }, [currentPlaylist]);
 
   useEffect(() => {
     if (songIdx !== null) {
-      getSongURL(playlist, songList[songIdx].filename).then((url) => {
+      getSongURL(currentPlaylist, songList[songIdx].filename).then((url) => {
         setSongURL(url);
       });
     }
   }, [songIdx]);
 
   async function initList() {
-    const list = await getSongList(playlist);
+    const list = await getSongList(currentPlaylist);
     shuffleSongs(list);
     setSongList(list);
   }

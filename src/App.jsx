@@ -5,18 +5,22 @@ import PlayerWrapper from './components/PlayerWrapper';
 import './App.css';
 
 function App() {
-  const [playlist, setPlaylist] = useState('');
+  const [playlistNames, setPlaylistNames] = useState([]);
+  const [currentPlaylist, setCurrentPlaylist] = useState('');
 
   useEffect(() => {
     getPlaylists().then((playlists) => {
-      setPlaylist(playlists[0]);
+      setPlaylistNames(playlists);
+      setCurrentPlaylist(playlists[0]);
     });
   }, []);
 
   initFirebase();
   return (
-    <PlaylistContext.Provider value={{ playlist, setPlaylist }}>
-      <main data-theme={playlist}>
+    <PlaylistContext.Provider
+      value={{ playlistNames, currentPlaylist, setCurrentPlaylist }}
+    >
+      <main data-theme={currentPlaylist}>
         <PlayerWrapper />
       </main>
     </PlaylistContext.Provider>

@@ -4,14 +4,14 @@ import Screen from './Screen';
 import Controls from './Controls';
 
 function Player(props) {
-  const { playlist } = useContext(PlaylistContext);
+  const { currentPlaylist } = useContext(PlaylistContext);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMenuView, setIsMenuView] = useState(false);
   const playerRef = useRef(null);
 
   useEffect(() => {
-    setIsPlaying(playlist && props.src);
-  }, [playlist, props.src]);
+    setIsPlaying(currentPlaylist && props.src);
+  }, [currentPlaylist, props.src]);
 
   useEffect(() => {
     if (!props.src) return;
