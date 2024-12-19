@@ -9,7 +9,7 @@ export function shuffleSongs(list) {
 export function formatTime(rawTime) {
   rawTime = rawTime === undefined ? 0 : rawTime;
   const minutes = `${Math.floor(rawTime / 60)}`;
-  let seconds = `${Math.round(rawTime % 60)}`;
+  let seconds = `${Math.floor(rawTime % 60)}`;
   if (seconds.length < 2) seconds = '0' + seconds;
   return minutes + ':' + seconds;
 }

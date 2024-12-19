@@ -25,13 +25,9 @@ function Player(props) {
 
   useEffect(() => {
     if (isPlaying) {
-      if (isNaN(playerRef.current.duration))
-        setTimeout(() => {
-          setCurrentTime(0.3);
-        }, 300);
       const intervalId = setInterval(() => {
         setCurrentTime(playerRef.current.currentTime);
-      }, 1000);
+      }, 250);
       return () => {
         clearInterval(intervalId);
       };
