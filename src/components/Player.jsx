@@ -6,6 +6,7 @@ import Controls from './Controls';
 function Player(props) {
   const { currentPlaylist } = useContext(PlaylistContext);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState();
   const [isMenuView, setIsMenuView] = useState(false);
   const playerRef = useRef(null);
 
@@ -23,6 +24,21 @@ function Player(props) {
   }, [isPlaying]);
 
   useEffect(() => {
+    if (isPlaying) {
+      if (isNaN(playerRef.current.duration))
+        setTimeout(() => {
+          setCurrentTime(0.3);
+        }, 300);
+      const intervalId = setInterval(() => {
+        setCurrentTime(playerRef.current.currentTime);
+      }, 1000);
+      return () => {
+        clearInterval(intervalId);
+      };
+    }
+  }, [isPlaying]);
+
+  useEffect(() => {
     if (!playerRef) return;
     playerRef.current.addEventListener('ended', songEndHandler);
     return () => {
@@ -35,6 +51,7 @@ function Player(props) {
   }
 
   function songEndHandler() {
+    setCurrentTime(0);
     if (!props.isLastSong()) {
       props.onNextSong();
     } else {
@@ -43,11 +60,17 @@ function Player(props) {
   }
 
   function prevSongHandler() {
+    setCurrentTime(0);
     if (playerRef.current.currentTime < 0.6 && !props.isFirstSong()) {
       props.onPrevSong();
     } else {
       playerRef.current.currentTime = 0;
     }
+  }
+
+  function nextSongHandler() {
+    props.onNextSong();
+    setCurrentTime(0);
   }
 
   function playPauseHandler() {
@@ -58,12 +81,18 @@ function Player(props) {
     }
   }
 
+  const duration = playerRef.current?.duration
+    ? playerRef.current.duration
+    : undefined;
+
   return (
     <div className='player'>
-      <Screen 
-        data={props.data}
+      <Screen
         currentIdx={props.currentIdx}
         lastIdx={props.lastIdx}
+        data={props.data}
+        currentTime={currentTime}
+        duration={duration}
         isPlaying={isPlaying}
         isMenuView={isMenuView}
         onMenuToggle={menuToggleHandler}
@@ -72,7 +101,7 @@ function Player(props) {
         onMenuToggle={menuToggleHandler}
         onPrevSong={prevSongHandler}
         onPlayPause={playPauseHandler}
-        onNextSong={props.onNextSong}
+        onNextSong={nextSongHandler}
         isDisabledNext={props.isLastSong}
       />
       <audio

@@ -1,15 +1,22 @@
+import { formatTime } from '../util/helpers';
+
 function DisplaySong(props) {
   const [songName, artist] = props.data
     ? [props.data.name, props.data.artist]
     : [undefined, undefined];
+  const songNumber = `${props.currentIdx} of ${props.lastIdx}`;
+  const songTime = `${formatTime(props.currentTime)} / ${formatTime(
+    props.duration
+  )}`;
 
   return props.data ? (
     <>
-      <div className='song-number'>{`${props.currentIdx} of ${props.lastIdx}`}</div>
-      <div className='song'>
-        <p className='song-field'>{songName}</p>
-        <p className='song-field'>{artist}</p>
+      <div className='song-number'>{songNumber}</div>
+      <div className='song-data'>
+        <p className='song-data-field'>{songName}</p>
+        <p className='song-data-field'>{artist}</p>
       </div>
+      <div className='song-time'>{songTime}</div>
     </>
   ) : (
     <></>

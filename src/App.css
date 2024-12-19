@@ -78,17 +78,27 @@ main {
   justify-content: space-between;
 }
 
-.song {
+.song-number {
+  font-size: 0.875em;
+}
+
+.song-data {
+  margin-block: 6px;
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.song-field {
+.song-data-field {
   height: 2em;
   text-align: center;
   overflow-x: scroll;
   white-space: nowrap;
+}
+
+.song-time {
+  width: max-content;
+  margin-inline: auto;
 }
 
 .playlist {
