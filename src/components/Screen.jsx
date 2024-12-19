@@ -12,8 +12,8 @@ function Screen(props) {
         ) : (
           <DisplaySong
             isPlaying={props.isPlaying}
-            currentIdx={props.currentIdx}
-            lastIdx={props.lastIdx}
+            songNumber={props.songNumber}
+            totalSongs={props.totalSongs}
             data={props.data}
             currentTime={props.currentTime}
             duration={props.duration}

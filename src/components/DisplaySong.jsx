@@ -4,7 +4,7 @@ function DisplaySong(props) {
   const [songName, artist] = props.data
     ? [props.data.name, props.data.artist]
     : [undefined, undefined];
-  const songNumber = `${props.currentIdx} of ${props.lastIdx}`;
+  const songNumber = `${props.songNumber} of ${props.totalSongs}`;
   const songTime = `${formatTime(props.currentTime)} / ${formatTime(
     props.duration
   )}`;

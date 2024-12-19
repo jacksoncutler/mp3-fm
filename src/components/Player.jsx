@@ -88,8 +88,8 @@ function Player(props) {
   return (
     <div className='player'>
       <Screen
-        currentIdx={props.currentIdx}
-        lastIdx={props.lastIdx}
+        songNumber={props.songNumber}
+        totalSongs={props.totalSongs}
         data={props.data}
         currentTime={currentTime}
         duration={duration}
